@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 from sys import argv
 import math
+import time
 """Factorize as many numbers as possible into a product of 2 smaller nums"""
-
-
 def factory(num):
     """gets the factors of a number"""
     if num % 2 == 0:
@@ -25,13 +24,18 @@ def factory(num):
 
 def factors(filename):
     """read_file and prints them out"""
+    start = time.time()
 
+    PERIOD_OF_TIME = 0.08
+    
     with open(filename, encoding="utf-8") as my_file:
-        for i in my_file.readlines():
-            n = int(i)
-            result = factory(n)
+            for i in my_file.readlines():
+                n = int(i)
+                result = factory(n)
 
+                if time.time() > start + PERIOD_OF_TIME : break
 
+    
 if __name__ == "__main__":
     factors(argv[1])
     
